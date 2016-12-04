@@ -21,19 +21,22 @@ sanitizeDoctors <- function(raw.data, year) {
 
 # Filters data to include just doctors, removes unnecessary columns, and adds latitude and longitude
 sanitizeHospitals <- function(raw.data, year) {
+  # Removes physicians and unnecessary columns 
   dataset <- filter(raw.data, Teaching_Hospital_ID != 0) %>%
     select(-Physician_Profile_ID, -Physician_First_Name, -Physician_Middle_Name, -Physician_Last_Name, -Physician_Name_Suffix, 
            -Physician_Primary_Type, -Physician_Specialty)
   
-  addresses <- paste0(dataset$Recipient_Primary_Business_Street_Address_Line1, ", ", dataset$Recipient_City, ", ", dataset$Recipient_State, " ", dataset$Recipient_Zip_Code)
-  location.data <-data.frame(dataset$Recipient_Primary_Business_Street_Address_Line1, addresses) %>%
-    unique() #creates new dataframe to condense number of rows to pass to ggmaps
-  geocodes <- lapply(location.data$addresses, geocode) #returns list of dataframes
-  geocodes <- do.call('rbind', geocodes) #compacts list of dataframes into one dataframe
-  location.data$lon <- geocodes$lon
-  location.data$lat <- geocodes$lat
-  left_join(dataset, location.data, Recipient_Primary_Business_Street_Address_Line1) #rejoins lon and lat with original data
+  # Adds the column called address with the information given from these columns in the dataset
+  dataset$address <- paste0(dataset$Recipient_Primary_Business_Street_Address_Line1, ", ", dataset$Recipient_City, ", ", dataset$Recipient_State, " ", dataset$Recipient_Zip_Code)
   
+  geocodes <- lapply(dataset$address, geocode) #returns list of dataframes
+  geocodes <- do.call('rbind', geocodes) #compacts list of dataframes into one dataframe
+  
+  # adding longitude and latitude to dataset
+  dataset$lon <- geocodes$lon
+  dataset$lat <- geocodes$lat
+  
+  # Writes a new csv with lon and lat added to the dataset
   write.csv(dataset, paste0('sanitized/', year, "_hospital_data.csv"))
 }
 
