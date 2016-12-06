@@ -18,9 +18,9 @@ shinyServer(function(input, output) {
   #Ryan's widgets -- not complete
   dataInputChart <- reactive({
     switch(input$plotDrugs,
-           "promoChart" = promoChart,
-           "drugSales" = top_drug_sales,
-           "drugPrescriptions" = most_prescribed_drugs)
+           "promoChart" = 'promoChart',
+           "drugSales" = 'top_drug_sales',
+           "drugPrescriptions" = 'most_prescribed_drugs')
   })
 
   output$drugChart <- renderPlotly({

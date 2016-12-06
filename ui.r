@@ -21,17 +21,17 @@ shinyUI(fluidPage(
       sidebarLayout(
         sidebarPanel(
           selectInput('yearData', label = "Select Year:", choices = list("2015" = '2015',"2014" = '2014', 
-                                                                         "2013" = '2013'), selected = '2015'),
+                                                                         "2013" = '2013'), selected = '2013'),
           selectInput('plotDrugs', label = "Select Graph:",
                       choices = list("Promoted Drugs" = 'promoChart', "Overall Drug Prescriptions" = 'drugSales',
                                      "Overall Drug Sales" = 'drugPrescriptions'),
-                      selected = "promo"
+                      selected = "promoChart"
           ),
           br(),
           conditionalPanel(condition = "input.plotDrugs == 'promoChart'",
                            radioButtons('amountOrPayment', label = "Rank Drugs by:",
                                         choices = list("Total Amount" = 'Amount', "Total Payments" = 'Payments'),
-                                        selected = 'amount')),
+                                        selected = 'Amount')),
           conditionalPanel(condition = "input.plotDrugs != 'promoChart'",
                            checkboxInput("compareToData", label = "Compare to Drug Promotions", value = FALSE))
         ),
