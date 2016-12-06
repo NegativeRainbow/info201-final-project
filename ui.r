@@ -3,7 +3,8 @@ library(dplyr)
 library(plotly)
 library(leaflet)
 
-shinyUI(navbarPage('Info Final Project',
+shinyUI(fluidPage(
+  navbarPage('Info Final Project',
     tabPanel('Hospital map',
       sidebarLayout(
         sidebarPanel(
@@ -19,18 +20,16 @@ shinyUI(navbarPage('Info Final Project',
     tabPanel('Drug Chart',
       sidebarLayout(
         sidebarPanel(
-          selectInput('plotSelect', label = "Select Graph:", 
-                      choices = list("Promoted Drugs" = 'Chart1', "Overall Drug Prescriptions" = 'Chart2',
-                                     "Overall Drug Sales" = 'Chart3'),
-                      selected = "Chart1"
+          selectInput('plotDrugs', label = "Select Graph:",
+                      choices = list("Promoted Drugs" = 'promoChart', "Overall Drug Prescriptions" = 'drugSales',
+                                     "Overall Drug Sales" = 'drugPrescriptions'),
+                      selected = "promo"
           ),
           br(),
-          conditionalPanel(condition = "input$plotSelect == 'Chart2'",
+          conditionalPanel(condition = "input.plotDrugs != 'promoChart'",
                            checkboxInput("compareToData", label = "Compare to Drug Promotions", value = FALSE))
-          
         ),
         mainPanel(
-          plotOutput("plot")
         )
       )
     ),
@@ -44,6 +43,6 @@ shinyUI(navbarPage('Info Final Project',
       )
     )
   )
-)
+))
       
   
