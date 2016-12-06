@@ -1,17 +1,14 @@
 library(shiny)
 library(dplyr)
 library(plotly)
-shinyServer(function(input, output, session) {
-  
+shinyServer(function(input, output) {
+
   #Ryan's widgets -- not complete
   dataInputChart <- reactive({
-    switch(input$plot,
+    switch(input$plotDrugs,
            "promoChart" = promoChart,
            "drugSales" = drugSales,
            "drugPrescriptions" = drugPrescriptions)
   })
-  output$value <- renderPrint({ input$radio })
-  output$chart <- renderPlot({
-    plot(cars, type=input$plotType)
-  })
+  
 })
