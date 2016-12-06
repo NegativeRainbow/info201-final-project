@@ -1,16 +1,19 @@
 library(shiny)
 library(dplyr)
 library(plotly)
-library(markdown)
+library(leaflet)
 
 shinyUI(fluidPage(
   navbarPage('Info Final Project',
     tabPanel('Hospital map',
       sidebarLayout(
         sidebarPanel(
-          selectInput('yearvar', label = "Which Year?", choices = list("2015" = '2015_hospital_data.csv', "2014_hospital_data.csv" = '2014', "2013" = '2013_hospital_data.csv'))
+          selectInput('yearvar', label = "Which Year?", choices = list("2015" = '2015_hospital_data.csv', 
+                                                                       "2014" = '2014_hospital_data.csv', 
+                                                                       "2013" = '2013_hospital_data.csv'))
       ),
         mainPanel(
+          leafletOutput("map")
         )
       )
     ),
