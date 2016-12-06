@@ -31,9 +31,9 @@ shinyUI(fluidPage(
           conditionalPanel(condition = "input.plotDrugs == 'promoChart'",
                            radioButtons('amountOrPayment', label = "Rank Drugs by:",
                                         choices = list("Total Amount" = 'Amount', "Total Payments" = 'Payments'),
-                                        selected = 'Amount')),
-          conditionalPanel(condition = "input.plotDrugs != 'promoChart'",
-                           checkboxInput("compareToData", label = "Compare to Drug Promotions", value = FALSE))
+                                        selected = 'Amount'))
+          #conditionalPanel(condition = "input.plotDrugs != 'promoChart'",
+                           #checkboxInput("compareToData", label = "Compare to Drug Promotions", value = FALSE))
         ),
         mainPanel(
           conditionalPanel(condition = "input.plotDrugs == 'promoChart'",
@@ -41,8 +41,22 @@ shinyUI(fluidPage(
                            h4("Analysis of the payments that companies and organizations make to hospitals and physicians in order to persuade  
                them to prescribe a certain drug."),
                            p("(A large majority of payments/gifts were not for a specific drug and are not shown here. \n
-                                  Also only the top 100 drugs are shown from each yearly dataset)")),
-          plotlyOutput("drugChart")
+                                  Also only the top 100 drugs are shown from each yearly dataset)"),
+          br(),
+          plotlyOutput("drugChart", height = "100%", width = "100%")),
+          
+          conditionalPanel(condition = "input.plotDrugs == 'drugSales'",
+                           h1("Top 100 Best Selling Prescription Drugs"),
+                           h4("Analysis of the top selling prescription drugs in the U.S."),
+                           p("(Only the top 100 drugs are shown from each yearly dataset)"),
+          br(),
+          plotlyOutput("salesChart", height = "100%", width = "100%")),
+          conditionalPanel(condition = "input.plotDrugs == 'drugPrescriptions'",
+                           h1("Top 100 Most Prescribed Prescription Drugs"),
+                           h4("Analysis of the most prescribed prescription drugs in the U.S."),
+                           p("(Only the top 100 drugs are shown from each yearly dataset)"),
+          br(),
+          plotlyOutput("prescriptionChart", height = "100%", width = "100%"))
                           
                       
         )

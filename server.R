@@ -24,14 +24,14 @@ shinyServer(function(input, output) {
   })
 
   output$drugChart <- renderPlotly({
-    return(buildDrugChart(dataInputChart(), input$yearData, input$amountOrPayment))
+    return(buildDrugChart(input$yearData(), input$amountOrPayment))
   })
-  # output$salesChart <- renderPlotly({
-  #   return(buildDrugChart(drugSales,))
-  # })
-  # output$prescriptionChart <- renderPlotly({
-  #   return(buildDrugChart())
-  # })
+   output$salesChart <- renderPlotly({
+     return(buildTopDrugChart(dataInputChart(), input$yearData()))
+   })
+   output$prescriptionChart <- renderPlotly({
+     return(buildTopDrugChart(dataInputChart(), input$yearData()))
+   })
 
 
   
