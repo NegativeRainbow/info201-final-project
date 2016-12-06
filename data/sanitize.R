@@ -6,6 +6,7 @@ library(ggmap)
 
 # Removes unnecessary columns from raw data
 sanitize <- function(raw.data) {
+  raw.data <- removeDC(raw.data)
   dataset <- select(raw.data, -Change_Type, -Recipient_Country, -Recipient_Province, -Recipient_Postal_Code, -Physician_License_State_code1, -Physician_License_State_code2, -Physician_License_State_code3, -Physician_License_State_code4, -Physician_License_State_code5, 
          -Dispute_Status_for_Publication, -Program_Year, -Payment_Publication_Date)
   return(dataset)
@@ -14,6 +15,7 @@ sanitize <- function(raw.data) {
 
 # Filters data to include just doctors, and removes unnecessary columns
 sanitizeDoctors <- function(raw.data, year) {
+  raw.data <- removeDC(raw.data)
   dataset <- filter(raw.data, Physician_Profile_ID != 0) %>%
     select(-Teaching_Hospital_CCN, -Teaching_Hospital_ID, -Teaching_Hospital_Name)
   write.csv(dataset, paste0('sanitized/', year, "_doctor_data.csv"))
@@ -21,6 +23,7 @@ sanitizeDoctors <- function(raw.data, year) {
 
 # Filters data to include just doctors, removes unnecessary columns, and adds latitude and longitude
 sanitizeHospitals <- function(raw.data, year) {
+  raw.data <- removeDC(raw.data)
   # Removes physicians and unnecessary columns 
   dataset <- filter(raw.data, Teaching_Hospital_ID != 0) %>%
     select(-Physician_Profile_ID, -Physician_First_Name, -Physician_Middle_Name, -Physician_Last_Name, -Physician_Name_Suffix, 
@@ -38,6 +41,12 @@ sanitizeHospitals <- function(raw.data, year) {
   
   # Writes a new csv with lon and lat added to the dataset
   write.csv(dataset, paste0('sanitized/', year, "_hospital_data.csv"))
+}
+
+# Removes all entries for Washington DC from data
+removeDC <- function(raw.data){
+  dataset <- filter(raw.data, Recipient_City != "WASHINGTON DC")
+  return(dataset)
 }
 
 # Sanitizes over the given years
