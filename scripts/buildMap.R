@@ -19,6 +19,6 @@ BuildMap <- function(year) {
     # Add markers using long and lat and description when viewer hovers over marker
     addMarkers(~lon, ~lat, popup= ~paste0("<b>Name: </b>", str_to_title(Teaching_Hospital_Name),
                                           "<br><b>Address: </b>", address,
-                                          "<br><b>Total Payment: </b>$", paste(format(Total, big.mark=","),sep=""))) 
+                                          "<br><b>Total Amount Recieved: </b>$", paste(format(Total, big.mark=","),sep=""))) 
   return(m)  # Print the map
 }
