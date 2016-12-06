@@ -27,16 +27,25 @@ shinyServer(function(input, output) {
   
 
   output$drugChart <- renderPlotly({
-        return(buildDrugChart(input$yearData, input$amountOrPayment))
+    if(dataInputChart() == "promoChart") {
+      return(buildDrugChart(input$yearData, input$amountOrPayment))
+    } else {
+      return(NULL)
+    }
   })
    output$salesChart <- renderPlotly({
-    
-        return(buildTopDrugChart(dataInputChart(), input$yearData))
-     
+     if(dataInputChart() == "top_drug_sales") {
+       return(buildTopDrugChart(dataInputChart(), input$yearData))
+     } else {
+       return(NULL)
+     }
    })
    output$prescriptionChart <- renderPlotly({
-
+    if(dataInputChart() == "most_prescribed_drugs") {
         return(buildTopDrugChart(dataInputChart(), input$yearData))
+    } else {
+      return(NULL)
+    }
    })
   
   #Mo's widgets

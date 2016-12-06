@@ -30,7 +30,7 @@ buildTopDrugChart <- function(chartType, yearData) {
   } else {
     type = "Prescriptions"
   }
-
+  if(!(chartType == "promoChart"))
   yearlyData <- read.csv(paste0('data/sanitized/',yearData,'_', chartType,'.csv'))
 
   p2 <- plot_ly(yearlyData, x=~Drug.Name, y =~paste0("Drug.", type), type = 'bar', name = paste0("Drug ",type)) %>%
