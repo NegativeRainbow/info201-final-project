@@ -3,14 +3,15 @@ library(plotly)
 library(leaflet)
 library(shiny)
 
-
+# Using function 'source' we called our functions from the scripts folder
 source('./scripts/buildMap.R')
 source('./scripts/physicianChart.R')
 source('./scripts/drugChart.R')
 
-
+#Start shiny server
 shinyServer(function(input, output) {
-  #Davis' widgets
+  #Render the leaflet map that returns a map of the usa with markers for where hospitals are
+  #Calls function BuildMap that takes in the dataset the user wants
   output$map <- renderLeaflet({
     return(BuildMap(input$yearvar))
   })
