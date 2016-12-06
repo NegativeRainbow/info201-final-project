@@ -27,6 +27,9 @@ shinyUI(fluidPage(
                            checkboxInput("compareToData", label = "Compare to Drug Promotions", value = FALSE))
         ),
         mainPanel(
+          conditionalPanel(condition = "input.plotDrugs == 'promoChart'",
+                           textOutput("drugSummary"))
+                           
         )
       )
     ),
