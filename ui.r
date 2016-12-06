@@ -21,7 +21,7 @@ shinyUI(fluidPage(
       sidebarLayout(
         sidebarPanel(
           selectInput('yearData', label = "Select Year:", choices = list("2015" = '2015',"2014" = '2014', 
-                                                                         "2013" = '2013'), selected = '2013'),
+                                                                         "2013" = '2013'), selected = '2015'),
           selectInput('plotDrugs', label = "Select Graph:",
                       choices = list("Promoted Drugs" = 'promoChart', "Overall Drug Prescriptions" = 'drugPrescriptions',
                                      "Overall Drug Sales" = 'drugSales'),

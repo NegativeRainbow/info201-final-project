@@ -24,16 +24,16 @@ p <- plot_ly(dataSumm, x =~Name_of_Associated_Covered_Drug_or_Biological1, y =~e
 }
 
 buildTopDrugChart <- function(chartType, yearData) {
-
-  if(chartType == "top_drug_sales") {
-    type = "Sales"
-  } else {
+  type = "Sales"
+  if(chartType == "most_prescribed_drugs") {
     type = "Prescriptions"
   }
   if(!(chartType == "promoChart"))
   yearlyData <- read.csv(paste0('data/sanitized/',yearData,'_', chartType,'.csv'))
+  
+  
 
-  p2 <- plot_ly(yearlyData, x=~Drug.Name, y =~paste0("Drug.", type), type = 'bar', name = paste0("Drug ",type)) %>%
+  p2 <- plot_ly(yearlyData, x=~Drug.Name, y =~eval(parse(text = paste0("Drug.", type))), type = 'bar', name = paste0("Drug ",type)) %>%
     layout(title = paste0("Top Drug ", type),
            xaxis = list(title = "Drug Name"),
            yaxis = list(title = paste0("Drug ", type)))
