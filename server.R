@@ -22,18 +22,21 @@ shinyServer(function(input, output) {
            "drugSales" = 'top_drug_sales',
            "drugPrescriptions" = 'most_prescribed_drugs')
   })
+  
+  
 
   output$drugChart <- renderPlotly({
-    return(buildDrugChart(input$yearData(), input$amountOrPayment))
+        return(buildDrugChart(input$yearData, input$amountOrPayment))
   })
    output$salesChart <- renderPlotly({
-     return(buildTopDrugChart(dataInputChart(), input$yearData()))
+    
+        return(buildTopDrugChart(dataInputChart(), input$yearData))
+     
    })
    output$prescriptionChart <- renderPlotly({
-     return(buildTopDrugChart(dataInputChart(), input$yearData()))
+
+        return(buildTopDrugChart(dataInputChart(), input$yearData))
    })
-
-
   
   #Mo's widgets
   output$chart <- renderPlotly({

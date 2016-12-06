@@ -23,22 +23,22 @@ shinyUI(fluidPage(
           selectInput('yearData', label = "Select Year:", choices = list("2015" = '2015',"2014" = '2014', 
                                                                          "2013" = '2013'), selected = '2013'),
           selectInput('plotDrugs', label = "Select Graph:",
-                      choices = list("Promoted Drugs" = 'promoChart', "Overall Drug Prescriptions" = 'drugSales',
-                                     "Overall Drug Sales" = 'drugPrescriptions'),
+                      choices = list("Promoted Drugs" = 'promoChart', "Overall Drug Prescriptions" = 'drugPrescriptions',
+                                     "Overall Drug Sales" = 'drugSales'),
                       selected = "promoChart"
           ),
           br(),
           conditionalPanel(condition = "input.plotDrugs == 'promoChart'",
                            radioButtons('amountOrPayment', label = "Rank Drugs by:",
-                                        choices = list("Total Amount" = 'Amount', "Total Payments" = 'Payments'),
-                                        selected = 'Amount'))
+                                        choices = list("Total Amount" = 'amount', "Total Payments" = 'payments'),
+                                        selected = 'amount'))
           #conditionalPanel(condition = "input.plotDrugs != 'promoChart'",
                            #checkboxInput("compareToData", label = "Compare to Drug Promotions", value = FALSE))
         ),
         mainPanel(
           conditionalPanel(condition = "input.plotDrugs == 'promoChart'",
                            h1("Top 100 Promoted Prescription Drugs"),
-                           h4("Analysis of the payments that companies and organizations make to hospitals and physicians in order to persuade  
+                           h4("Analysis of the payments that companies and organizations make to hospitals and physicians in order to persuade
                them to prescribe a certain drug."),
                            p("(A large majority of payments/gifts were not for a specific drug and are not shown here. \n
                                   Also only the top 100 drugs are shown from each yearly dataset)"),
@@ -57,8 +57,6 @@ shinyUI(fluidPage(
                            p("(Only the top 100 drugs are shown from each yearly dataset)"),
           br(),
           plotlyOutput("prescriptionChart", height = "100%", width = "100%"))
-                          
-                      
         )
       )
     ),
