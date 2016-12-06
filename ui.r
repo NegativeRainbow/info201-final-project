@@ -8,7 +8,7 @@ shinyUI(fluidPage(
     tabPanel('Hospital map',
       sidebarLayout(
         sidebarPanel(
-          selectInput('yearvar', label = "Which Year?", choices = list("2015" = '2015_hospital_data.csv', 
+          selectInput('yearvar', label = "Select Year:", choices = list("2015" = '2015_hospital_data.csv', 
                                                                        "2014" = '2014_hospital_data.csv', 
                                                                        "2013" = '2013_hospital_data.csv'))
       ),
@@ -20,25 +20,38 @@ shinyUI(fluidPage(
     tabPanel('Drug Chart',
       sidebarLayout(
         sidebarPanel(
+          selectInput('yearData', label = "Select Year:", choices = list("2015" = '2015',"2014" = '2014', 
+                                                                         "2013" = '2013'), selected = '2015'),
           selectInput('plotDrugs', label = "Select Graph:",
                       choices = list("Promoted Drugs" = 'promoChart', "Overall Drug Prescriptions" = 'drugSales',
                                      "Overall Drug Sales" = 'drugPrescriptions'),
                       selected = "promo"
           ),
           br(),
+          conditionalPanel(condition = "input.plotDrugs == 'promoChart'",
+                           radioButtons('amountOrPayment', label = "Rank Drugs by:",
+                                        choices = list("Total Amount" = 'Amount', "Total Payments" = 'Payments'),
+                                        selected = 'amount')),
           conditionalPanel(condition = "input.plotDrugs != 'promoChart'",
                            checkboxInput("compareToData", label = "Compare to Drug Promotions", value = FALSE))
         ),
         mainPanel(
           conditionalPanel(condition = "input.plotDrugs == 'promoChart'",
-                           textOutput("drugSummary"))
+                           h1("Top 100 Promoted Prescription Drugs"),
+                           h4("Analysis of the payments that companies and organizations make to hospitals and physicians in order to persuade  
+               them to prescribe a certain drug."),
+                           p("(A large majority of payments/gifts were not for a specific drug and are not shown here. \n
+                                  Also only the top 100 drugs are shown from each yearly dataset)")),
+          plotlyOutput("drugChart")
+                          
+                      
         )
       )
     ),
     tabPanel('Physicans',
       sidebarLayout(
         sidebarPanel(
-          selectInput('yearSelect', label = "Select Year", choices = list("2013" = '2013_doctor_data.csv', "2014" = '2014_doctor_data.csv', "2015" = '2015_doctor_data.csv'), selected = '2015_doctor_data.csv'),
+          selectInput('yearSelect', label = "Select Year:", choices = list("2013" = '2013_doctor_data.csv', "2014" = '2014_doctor_data.csv', "2015" = '2015_doctor_data.csv'), selected = '2015_doctor_data.csv'),
           textInput("doctorSelect1", label = "Enter a physician's first name and last name", value = "Michael Silverman"),
           textInput("doctorSelect2", label = "Enter another physician's first name and last name", value = "Mark Elmore"),
           hr()

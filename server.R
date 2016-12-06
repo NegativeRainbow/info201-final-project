@@ -6,6 +6,7 @@ library(shiny)
 
 source('./scripts/buildMap.R')
 source('./scripts/physicianChart.R')
+source('./scripts/drugChart.R')
 
 
 shinyServer(function(input, output) {
@@ -18,15 +19,19 @@ shinyServer(function(input, output) {
   dataInputChart <- reactive({
     switch(input$plotDrugs,
            "promoChart" = promoChart,
-           "drugSales" = drugSales,
-           "drugPrescriptions" = drugPrescriptions)
+           "drugSales" = top_drug_sales,
+           "drugPrescriptions" = most_prescribed_drugs)
   })
 
-
-  output$drugSummary <-renderText({"Analysis of the specific drugs that companies and organizations lobby for to the hospitals and physicians in Washington.\n
-               Below is a visualization of the payments that these promoters made to the hospitals and physicians in order to persuade \n 
-               them to prescribe a certain drug. (Refer to the tab on the left to also see overall drug sales and overall monthly prescription \n
-               numbers and how they relate to the promoted drugs)"})
+  output$drugChart <- renderPlotly({
+    return(buildDrugChart(dataInputChart(), input$yearData, input$amountOrPayment))
+  })
+  # output$salesChart <- renderPlotly({
+  #   return(buildDrugChart(drugSales,))
+  # })
+  # output$prescriptionChart <- renderPlotly({
+  #   return(buildDrugChart())
+  # })
 
 
   
