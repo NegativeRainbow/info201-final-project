@@ -40,8 +40,12 @@ shinyServer(function(input, output) {
   
   #Mo's widgets
   output$chart <- renderPlotly({
-    p <- physicianChart(input$yearSelect, input$doctorSelect1, input$doctorSelect2)
+    p <- physicianChart(input$yearSelect, input$firstName, input$lastName)
     return(p)
+  })
+  
+  output$physicianText <- renderText({
+    "In the year 2013, ... had the most total earning in payments while in 2014 and 2015, ... had the most total earning in payments"
   })
 
 })

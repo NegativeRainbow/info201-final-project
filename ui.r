@@ -60,16 +60,17 @@ shinyUI(fluidPage(
         )
       )
     ),
-    tabPanel('Physicans',
+    tabPanel('Physicans Comparison',
       sidebarLayout(
         sidebarPanel(
-          selectInput('yearSelect', label = "Select Year:", choices = list("2013" = '2013_doctor_data.csv', "2014" = '2014_doctor_data.csv', "2015" = '2015_doctor_data.csv'), selected = '2015_doctor_data.csv'),
-          textInput("doctorSelect1", label = "Enter a physician's first name and last name", value = "Michael Silverman"),
-          textInput("doctorSelect2", label = "Enter another physician's first name and last name", value = "Mark Elmore"),
+          selectInput('yearSelect', label = "Select Year", choices = list("2013" = 2013, "2014" = 2014, "2015" = 2015), selected = 2015),
+          textInput("firstName", label = "Enter a physician's first name", value = "Michael"),
+          textInput("lastName", label = "Enter a physician's last name", value = "Silverman"),
           hr()
         ),
         mainPanel(
-          plotlyOutput('chart')
+          plotlyOutput('chart'),
+          textOutput('physicianText')
         )
       )
     )
