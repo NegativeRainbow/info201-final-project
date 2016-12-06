@@ -70,3 +70,5 @@ physicianChart <- function(year, first.name, last.name) {
   
   return(p)
 }
+
+# format(Total, big.mark=","),sep=""
