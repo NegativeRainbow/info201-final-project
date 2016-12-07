@@ -74,6 +74,23 @@ shinyUI(fluidPage(
           textOutput('physicianText')
         )
       )
+    ),
+    tabPanel('About Us',
+      sidebarLayout(
+        sidebarPanel(
+          img(src = "https://i.redd.it/bx6x3642swmx.jpg", height = 400, width = 400), width = 6,
+          br(),
+          br(),
+          h1("Members:"),
+          h4("Danish, Davis, Muhammad, Ryan")
+        ),
+        mainPanel(
+          h1("Target Audience"),
+          h4("Patients that are worried that their doctors may be suffering a conflict of interest between giving them the best care possible and financial gains from pharmaceutical companies"),
+          h1("Frame"),
+          h4("After opening up the csv final, we realized how messy the data was...")
+        )
+      )
     )
   )
 ))
