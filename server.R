@@ -28,7 +28,7 @@ shinyServer(function(input, output) {
 
   output$drugChart <- renderPlotly({
     if(dataInputChart() == "promoChart") {
-      return(buildDrugChart(input$yearData, input$amountOrPayment))
+      return(buildDrugChart(input$yearData))
     } else {
       return(NULL)
     }

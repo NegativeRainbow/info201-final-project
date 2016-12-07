@@ -27,14 +27,7 @@ shinyUI(fluidPage(
                       choices = list("Promoted Drugs" = 'promoChart', "Overall Drug Prescriptions" = 'drugPrescriptions',
                                      "Overall Drug Sales" = 'drugSales'),
                       selected = "promoChart"
-          ),
-          br(),
-          conditionalPanel(condition = "input.plotDrugs == 'promoChart'",
-                           radioButtons('amountOrPayment', label = "Rank Drugs by:",
-                                        choices = list("Total Amount" = 'amount', "Total Payments" = 'payments'),
-                                        selected = 'amount'))
-          #conditionalPanel(condition = "input.plotDrugs != 'promoChart'",
-                           #checkboxInput("compareToData", label = "Compare to Drug Promotions", value = FALSE))
+          )
         ),
         mainPanel(
           conditionalPanel(condition = "input.plotDrugs == 'promoChart'",
