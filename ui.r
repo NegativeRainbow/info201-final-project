@@ -13,6 +13,7 @@ shinyUI(fluidPage(
                                                                        "2013" = '2013_hospital_data.csv'))
       ),
         mainPanel(
+          h2("Map of Hospitals that Recieved Money from Drug Organizations"),
           leafletOutput("map")
         )
       )
