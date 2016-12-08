@@ -80,7 +80,8 @@ physicianChart <- function(year, first.name, last.name) {
                marker = list(color = c('rgba(222,45,38,0.8)', 'rgba(204,204,204,1)'))) %>%
     layout(title = "",
            xaxis = list(title = ""),
-           yaxis = list(title = paste("Total Amount of payment earned in", year,"(US Dollars)")))
+           yaxis = list(title = paste("Total Amount of payment earned in", year,"(US Dollars)")),
+           margin = list(pad = 5))
   
   return(p)
 }

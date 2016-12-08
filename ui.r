@@ -3,7 +3,7 @@ library(dplyr)
 library(plotly)
 library(leaflet)
 
-shinyUI(fluidPage(
+shinyUI(fillPage(theme = "fancy.css",
   navbarPage('Info Final Project - Drug Promotions',
       # Davis' Widget
       # Created tab for map interaction
@@ -81,7 +81,7 @@ shinyUI(fluidPage(
         ),
         mainPanel(
           plotlyOutput('chart'),
-          textOutput('physicianText')
+          h4(uiOutput('physicianText'))
         )
       )
     ),
