@@ -4,7 +4,7 @@ library(plotly)
 library(leaflet)
 
 shinyUI(fluidPage(
-  navbarPage('Info Final Project',
+  navbarPage('Info Final Project - Drug Promotions',
       # Davis' Widget    
       tabPanel('WA Hospital Map',
       sidebarLayout(
@@ -41,7 +41,7 @@ shinyUI(fluidPage(
                            h4("Analysis of the payments that companies and organizations make to hospitals and physicians in order to persuade
                them to prescribe a certain drug."),
                            p("(A large majority of payments/gifts were not for a specific drug and are not shown here. \n
-                                  Also only the top 100 drugs are shown from each yearly dataset)"),
+                                  Also only the top 100 drugs are shown from each yearly dataset. Zoom for more info.)"),
           br(),
           plotlyOutput("drugChart", height = "100%", width = "100%")),
           
@@ -81,7 +81,7 @@ shinyUI(fluidPage(
         )
       )
     ),
-    tabPanel('About Us',
+    tabPanel('About Our Project',
       sidebarLayout(
         sidebarPanel(
           img(src = "https://i.redd.it/bx6x3642swmx.jpg", height = 400, width = 400), width = 6,
@@ -93,8 +93,9 @@ shinyUI(fluidPage(
         mainPanel(
           h1("Target Audience"),
           h4("Patients that are worried that their doctors may be suffering a conflict of interest between giving them the best care possible and financial gains from pharmaceutical companies"),
-          h1("Frame"),
-          h4("After opening up the csv final, we realized how messy the data was...")
+          h1("About the Data"),
+          h4("We found this data from seeing John Oliver talk about it on his show and decided to pursue it for our project. We found the data to be really messy and large so we filtered it 
+             down to Washington and to relevent areas that would help users to more easily understand and comprehend what was happening and how it affected doctors, hospitals, and drug prescriptions and sales.")
         )
       )
     )
