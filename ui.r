@@ -80,7 +80,7 @@ shinyUI(fluidPage(
           br(),
           br(),
           h1("Members:"),
-          h4("Danish, Davis, Muhammad, Ryan")
+          h4("Danish Bashar, Davis Huynh, Muhammad Hariz, Ryan Mills")
         ),
         mainPanel(
           h1("Target Audience"),
