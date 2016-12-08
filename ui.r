@@ -5,16 +5,20 @@ library(leaflet)
 
 shinyUI(fluidPage(
   navbarPage('Info Final Project - Drug Promotions',
-      # Davis' Widget    
+      # Davis' Widget
+      # Created tab for map interaction
       tabPanel('WA Hospital Map',
       sidebarLayout(
         sidebarPanel(
+          # Lets user choose what year of the dataset they want to see using a dropdown.
           selectInput('yearvar', label = "Select Year:", choices = list("2015" = '2015_hospital_data.csv', 
                                                                        "2014" = '2014_hospital_data.csv', 
                                                                        "2013" = '2013_hospital_data.csv'))
       ),
         mainPanel(
+          # Create a header describing the map
           h2("Map of Hospitals that Recieved Money from Drug Organizations"),
+          # Function to output interactive map using leaflet.
           leafletOutput("map")
         )
       )
