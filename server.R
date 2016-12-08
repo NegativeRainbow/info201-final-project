@@ -59,7 +59,7 @@ shinyServer(function(input, output) {
   })
   
   output$physicianText <- renderText({
-    "In the year 2013, Dr. John West had the greatest total earning in payments while in 2014 and 2015, Dr. Rodney Raabe had the most total earning in payments"
+    "In the year 2013, physician John West had the greatest total earning in payments while in 2014 and 2015, physician Rodney Raabe had the most total earning in payments"
   })
 
 })

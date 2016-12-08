@@ -14,8 +14,8 @@ uniquephysicianData <- function(dataset) {
   # gathering hover information to be displayed on the chart
   name <- paste0("Name: ", str_to_title(merged.dataset$Physician_First_Name), " ", str_to_title(merged.dataset$Physician_Last_Name))
   specialty <- paste0("Specialty: ", merged.dataset$Physician_Specialty)
-  address <- paste0("Business address: ", merged.dataset$Recipient_Primary_Business_Street_Address_Line1, " ", merged.dataset$Recipient_City, " ", merged.dataset$Recipient_State, " ", merged.dataset$Recipient_Zip_Code, " ", merged.dataset$Recipient_Country)
-  total.payment <- paste0("Total payment in US Dollars: $", format(merged.dataset$Total, big.mark = ","))
+  address <- paste0("Business Address: ", merged.dataset$Recipient_Primary_Business_Street_Address_Line1, " ", merged.dataset$Recipient_City, " ", merged.dataset$Recipient_State, " ", merged.dataset$Recipient_Zip_Code, " ", merged.dataset$Recipient_Country)
+  total.payment <- paste0("Total Amount Received in US Dollars: $", format(merged.dataset$Total, big.mark = ","))
   merged.dataset$hover <- with(merged.dataset, paste0(name, '<br>', specialty, '<br>', address, '<br>', total.payment))
   
   return(merged.dataset)
