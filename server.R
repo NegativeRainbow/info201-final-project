@@ -50,12 +50,16 @@ shinyServer(function(input, output) {
   
   #Mo's widgets
   output$chart <- renderPlotly({
+    validate(
+      need(input$firstName, 'Please enter first name'),
+      need(input$lastName, 'Please enter last name')
+    )
     p <- physicianChart(input$yearSelect, input$firstName, input$lastName)
     return(p)
   })
   
   output$physicianText <- renderText({
-    "In the year 2013, ... had the most total earning in payments while in 2014 and 2015, ... had the most total earning in payments"
+    "In the year 2013, Dr. John West had the greatest total earning in payments while in 2014 and 2015, Dr. Rodney Raabe had the most total earning in payments"
   })
 
 })

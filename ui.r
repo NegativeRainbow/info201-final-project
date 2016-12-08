@@ -5,7 +5,8 @@ library(leaflet)
 
 shinyUI(fluidPage(
   navbarPage('Info Final Project',
-    tabPanel('Hospital map',
+      # Davis' Widget    
+      tabPanel('WA Hospital Map',
       sidebarLayout(
         sidebarPanel(
           selectInput('yearvar', label = "Select Year:", choices = list("2015" = '2015_hospital_data.csv', 
@@ -18,6 +19,7 @@ shinyUI(fluidPage(
         )
       )
     ),
+    # Ryan's Widget
     tabPanel('Drug Chart',
       sidebarLayout(
         sidebarPanel(
@@ -54,12 +56,15 @@ shinyUI(fluidPage(
         )
       )
     ),
-    tabPanel('Physicans Comparison',
+    # Mo's Widget
+    tabPanel('WA Physicans Comparison',
       sidebarLayout(
         sidebarPanel(
-          selectInput('yearSelect', label = "Select Year", choices = list("2013" = 2013, "2014" = 2014, "2015" = 2015), selected = 2015),
-          textInput("firstName", label = "Enter a physician's first name", value = "Michael"),
-          textInput("lastName", label = "Enter a physician's last name", value = "Silverman"),
+          h2("Comparison Tool"),
+          h6("Compare a physician to the highest paid physician in Washington."),
+          selectInput('yearSelect', label = "Select Year:", choices = list("2013" = 2013, "2014" = 2014, "2015" = 2015), selected = 2015),
+          textInput("firstName", label = "Enter a physician's first name:", value = "Michael"),
+          textInput("lastName", label = "Enter a physician's last name:", value = "Silverman"),
           hr()
         ),
         mainPanel(
