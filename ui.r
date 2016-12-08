@@ -20,7 +20,7 @@ shinyUI(fluidPage(
       )
     ),
     # Ryan's Widget
-    tabPanel('WA Drug Chart',
+    tabPanel('U.S. Drug Chart',
       sidebarLayout(
         sidebarPanel(
           #Select which year of data to use
