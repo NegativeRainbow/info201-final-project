@@ -20,7 +20,7 @@ shinyUI(fluidPage(
       )
     ),
     # Ryan's Widget
-    tabPanel('Drug Chart',
+    tabPanel('WA Drug Chart',
       sidebarLayout(
         sidebarPanel(
           #Select which year of data to use
@@ -65,11 +65,11 @@ shinyUI(fluidPage(
       )
     ),
     # Mo's Widget
-    tabPanel('WA Physicans Comparison',
+    tabPanel('WA Physican Comparison',
       sidebarLayout(
         sidebarPanel(
-          h2("Comparison Tool"),
-          h6("Compare a physician to the highest paid physician in Washington."),
+          h1("Comparison Tool"),
+          h5("Compare a physician's total earnings to the average total earnings of all physicians in Washington State."),
           selectInput('yearSelect', label = "Select Year:", choices = list("2013" = 2013, "2014" = 2014, "2015" = 2015), selected = 2015),
           textInput("firstName", label = "Enter a physician's first name:", value = "Michael"),
           textInput("lastName", label = "Enter a physician's last name:", value = "Silverman"),

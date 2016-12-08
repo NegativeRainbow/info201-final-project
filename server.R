@@ -63,7 +63,7 @@ shinyServer(function(input, output) {
   })
   
   output$physicianText <- renderText({
-    "In the year 2013, physician John West had the greatest total earning in payments while in 2014 and 2015, physician Rodney Raabe had the most total earning in payments"
+    "This chart compares the total amount money a phycisian earned in payments and the average of total earnings for all physicians in Washington State during the selected year."
   })
 
 })

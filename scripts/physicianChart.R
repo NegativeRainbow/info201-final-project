@@ -53,19 +53,23 @@ physicianChart <- function(year, first.name, last.name) {
   
   dataset <- uniquephysicianData(dataset)
   
-  doctor1.payments <-  dataset[1,] # getting the doctor with the most earning in payments
+  # doctor1.payments is a data frame about the average of total earnings
+  doctor1.payments <-  data.frame(Title = as.character(paste0("Average of Total Earnings in year ", year)), hover = as.character(paste0("The average of total earnings in the year ",year, " was $", format(mean(dataset$Total), big.mark = ","))))
+  doctor1.payments <- data.frame(lapply(doctor1.payments, as.character), stringsAsFactors = FALSE)
+  doctor1.payments$Total <- mean(dataset$Total)
     
   doctor2.payments <-  getdoctorPayments(dataset, first.name, last.name) # getting the information of the doctor being searched from the UI   
     
   if(nrow(doctor2.payments) == 0){
-    doctor2.payments <- data.frame(Physician_First_Name = "Physician Not Found", Physician_Last_Name = "NA", Total = 0, hover = "NA")
-    Doctor_Names <- c(str_to_title(paste(doctor1.payments$Physician_First_Name, doctor1.payments$Physician_Last_Name)), doctor2.payments$Physician_First_Name)
-    Total <- c(doctor1.payments$Total, doctor2.payments$Total)
-    hover <- c(doctor1.payments$hover, doctor2.payments$hover)
+    doctor2.payments <- lapply(data.frame(Physician_First_Name = "Physician Not Found", Physician_Last_Name = "NA", hover = "Physician Not Found"), as.character)
+    doctor2.payments$Total <- 0
+    Doctor_Names <- c(doctor2.payments$Physician_First_Name, doctor1.payments$Title)
+    Total <- c(doctor2.payments$Total, doctor1.payments$Total)
+    hover <- c(doctor2.payments$hover, doctor1.payments$hover)
   } else {
-    Doctor_Names <- c(str_to_title(paste(doctor1.payments$Physician_First_Name, doctor1.payments$Physician_Last_Name)), str_to_title(paste(first.name, last.name)))
-    Total <- c(doctor1.payments$Total, doctor2.payments$Total)
-    hover <- c(doctor1.payments$hover, doctor2.payments$hover)
+    Doctor_Names <- c(str_to_title(paste(first.name, last.name)), doctor1.payments$Title)
+    Total <- c(doctor2.payments$Total, doctor1.payments$Total)
+    hover <- c(doctor2.payments$hover, doctor1.payments$hover)
   }
   
   # creating a dataframe with infos to be used for making the chart
@@ -73,7 +77,7 @@ physicianChart <- function(year, first.name, last.name) {
   
   # using plotly to make the chart
   p <- plot_ly(chart.df, x = ~Doctor_Names, y = ~Total, type = 'bar', text = ~hover,
-               marker = list(color = c('rgba(204,204,204,1)', 'rgba(222,45,38,0.8)'))) %>%
+               marker = list(color = c('rgba(222,45,38,0.8)', 'rgba(204,204,204,1)'))) %>%
     layout(title = "",
            xaxis = list(title = ""),
            yaxis = list(title = paste("Total Amount of payment earned in", year,"(US Dollars)")))
