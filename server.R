@@ -16,7 +16,7 @@ shinyServer(function(input, output) {
     return(BuildMap(input$yearvar))
   })
   
-  #Ryan's widgets -- not complete
+  #Changes based on the selector to choose which graph to plot
   dataInputChart <- reactive({
     switch(input$plotDrugs,
            "promoChart" = 'promoChart',
@@ -25,7 +25,7 @@ shinyServer(function(input, output) {
   })
   
   
-
+  #Create the promotion chart at default if it is selected by the user
   output$drugChart <- renderPlotly({
     if(dataInputChart() == "promoChart") {
       return(buildDrugChart(input$yearData))
@@ -33,6 +33,8 @@ shinyServer(function(input, output) {
       return(NULL)
     }
   })
+  
+   #Create the top drug sales chart if the user selects it
    output$salesChart <- renderPlotly({
      if(dataInputChart() == "top_drug_sales") {
        return(buildTopDrugChart(dataInputChart(), input$yearData))
@@ -40,6 +42,8 @@ shinyServer(function(input, output) {
        return(NULL)
      }
    })
+   
+   #Create the most prescribed drugs chart if the user selects it
    output$prescriptionChart <- renderPlotly({
     if(dataInputChart() == "most_prescribed_drugs") {
         return(buildTopDrugChart(dataInputChart(), input$yearData))

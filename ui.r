@@ -23,8 +23,11 @@ shinyUI(fluidPage(
     tabPanel('Drug Chart',
       sidebarLayout(
         sidebarPanel(
+          #Select which year of data to use
           selectInput('yearData', label = "Select Year:", choices = list("2015" = '2015',"2014" = '2014', 
                                                                          "2013" = '2013'), selected = '2015'),
+          
+          #Select which graph to view
           selectInput('plotDrugs', label = "Select Graph:",
                       choices = list("Promoted Drugs" = 'promoChart', "Overall Drug Prescriptions" = 'drugPrescriptions',
                                      "Overall Drug Sales" = 'drugSales'),
@@ -32,6 +35,7 @@ shinyUI(fluidPage(
           )
         ),
         mainPanel(
+          #Show as a default when the app opens and when the user selects "promotedDrugs"
           conditionalPanel(condition = "input.plotDrugs == 'promoChart'",
                            h1("Top 100 Promoted Prescription Drugs"),
                            h4("Analysis of the payments that companies and organizations make to hospitals and physicians in order to persuade
@@ -41,12 +45,16 @@ shinyUI(fluidPage(
           br(),
           plotlyOutput("drugChart", height = "100%", width = "100%")),
           
+          #Show if use selects the 'drugSales' tab
           conditionalPanel(condition = "input.plotDrugs == 'drugSales'",
                            h1("Top 100 Best Selling Prescription Drugs"),
                            h4("Analysis of the top selling prescription drugs in the U.S."),
                            p("(Only the top 100 drugs are shown from each yearly dataset)"),
           br(),
           plotlyOutput("salesChart", height = "100%", width = "100%")),
+          
+          
+          #Show if user selects the 'drugprescriptions' tab 
           conditionalPanel(condition = "input.plotDrugs == 'drugPrescriptions'",
                            h1("Top 100 Most Prescribed Prescription Drugs"),
                            h4("Analysis of the most prescribed prescription drugs in the U.S."),
