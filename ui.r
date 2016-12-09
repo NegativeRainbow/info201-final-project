@@ -88,7 +88,7 @@ shinyUI(fillPage(theme = "fancy.css",
     tabPanel('About Our Project',
       sidebarLayout(
         sidebarPanel(
-          img(src = "https://environment.uw.edu/wp-content/themes/coenv-wordpress-theme/assets/img/logo-1200x1200.png", height = 400, width = 400), width = 6,
+          img(src = "https://environment.uw.edu/wp-content/themes/coenv-wordpress-theme/assets/img/logo-1200x1200.png", height = 400, width = 400),
           br(),
           br(),
           h1("Members:"),
