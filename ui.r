@@ -98,8 +98,11 @@ shinyUI(fillPage(theme = "fancy.css",
           h1("Target Audience"),
           h4("Patients that are worried that their doctors may be suffering a conflict of interest between giving them the best care possible and financial gains from pharmaceutical companies"),
           h1("About the Data"),
-          h4("We found this data from seeing John Oliver talk about it on his show and decided to pursue it for our project. We found the data to be really messy and large so we filtered it 
-             down to Washington and to relevent areas that would help users to more easily understand and comprehend what was happening and how it affected doctors, hospitals, and drug prescriptions and sales.")
+          h4("We were watching a John Oliver video about free gifts given by pharmaceutical companies to doctors, which often has an impact on the prescriptions that doctors end up making.
+             When the Affordable Care Act was made law, it stipulated that the US government had to collect data on every single transaction made between these companies and doctors.
+             We took the data from the three years since the act was put into place (about 6gb per year) and filtered it down to data just about recipients in Washington State (cutting down the file size to about 60mb per year).
+             Each row of the data specifies one transaction between a pharmaceutical company and a doctor/hospital, with various details such as the date, the recipient, the donor, what drugs the company is tied to, and more.
+             We took this data and analyzed it into the other tabs, check those for more information about what they do.")
         )
       )
     )
