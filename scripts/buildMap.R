@@ -5,7 +5,7 @@ library(stringr)
 #Using the leaflet package we are able to create a map that places markers where hosiptals are
 BuildMap <- function(year) {
   # Read in the csv file the viewer wants to see..
-  dataset <- read.csv(paste0('data/sanitized/',year))
+  dataset <- read.csv(paste0('data/sanitized/',year,'_hospital_data.csv'))
   #Using the duplicated function we eliminate any duplicates so we have only one marker for each hospital
   unique.hospitals <- dataset[!duplicated(dataset$Teaching_Hospital_ID),]
   #Get total sum of how much the hospitals got paid

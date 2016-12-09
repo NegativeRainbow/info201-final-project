@@ -11,9 +11,9 @@ shinyUI(fillPage(theme = "fancy.css",
       sidebarLayout(
         sidebarPanel(
           # Lets user choose what year of the dataset they want to see using a dropdown.
-          selectInput('yearvar', label = "Select Year:", choices = list("2015" = '2015_hospital_data.csv', 
-                                                                       "2014" = '2014_hospital_data.csv', 
-                                                                       "2013" = '2013_hospital_data.csv'))
+          selectInput('yearvar', label = "Select Year:", choices = list("2015" = '2015', 
+                                                                       "2014" = '2014', 
+                                                                       "2013" = '2013'))
       ),
         mainPanel(
           # Create a header describing the map
@@ -88,7 +88,7 @@ shinyUI(fillPage(theme = "fancy.css",
     tabPanel('About Our Project',
       sidebarLayout(
         sidebarPanel(
-          img(src = "https://environment.uw.edu/wp-content/themes/coenv-wordpress-theme/assets/img/logo-1200x1200.png", height = 400, width = 400),
+          img(src = "https://environment.uw.edu/wp-content/themes/coenv-wordpress-theme/assets/img/logo-1200x1200.png", height = 350, width = 350),
           br(),
           br(),
           h1("Members:"),

@@ -1,7 +1,6 @@
 library(dplyr)
 library(plotly)
 library(stringr)
-setwd("~/Documents/INFO201/info201-final-project")
 
 # This function accepts the physician data frame returns a uniqe version of it
 uniquephysicianData <- function(dataset) {
