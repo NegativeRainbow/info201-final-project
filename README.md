@@ -3,7 +3,8 @@
 
 ### Shiny URL: https://negativerainbow.shinyapps.io/info201-final-project/
 
-If the shiny server does not work, please clone the github repository and run the code locally.
+Please do not switch tabs before graphs finish loading, it makes them break when you go back to that tab.  
+If the shiny server gives you an error, please clone the github repository and run the code locally.
 
 ### Directory Structure:
 
